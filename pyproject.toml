@@ -1,7 +1,7 @@
 [project]
 name = "superbank-mcp"
 version = "0.1.0"
-description = "Add your description here"
+description = "Superbank MCP Server"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
