@@ -1,34 +1,28 @@
-from typing import Any
-
-import httpx
 import sqlite3
+import tools    
 from mcp.server.fastmcp import FastMCP
 
 # Initialize FastMCP server
 mcp = FastMCP("SuperBankMCP")
 
-try:
-    # Connect to SQLite Database and create a cursor
-    sqliteConnection = sqlite3.connect('bank.db')
-    cursor = sqliteConnection.cursor()
-    print('DB Init')
+tools.db_config()
 
-    # Execute a query to get the SQLite version
-    query = 'SELECT sqlite_version();'
-    cursor.execute(query)
+@mcp.tool()
+def get_partners():
+    """
+    Get list of all partners from SuperBank
+    """
+    return tools.get_partners()
 
-    # Fetch and print the result
-    result = cursor.fetchall()
-    print('SQLite Version is {}'.format(result[0][0]))
+@mcp.tool()
+def create_partner(first_name, last_name, email):
+    """
+    Create a partner in SuperBank
 
-    # Close the cursor after use
-    cursor.close()
+    Args:
+        first_name: First name of new partner, maximum 25 letters
+        last_name: Last name of new partner, maximum 50 letters
+        email: Email of new partner, maximum 255 letters
+    """
 
-except sqlite3.Error as error:
-    print('Error occurred -', error)
-
-finally:
-    # Ensure the database connection is closed
-    if sqliteConnection:
-        sqliteConnection.close()
-        print('SQLite Connection closed')
+    return tools.create_partner(first_name, last_name, email)
