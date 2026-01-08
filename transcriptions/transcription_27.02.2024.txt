@@ -1,0 +1,23 @@
+SuperBank Web App – Design Discussion
+27th February 2024
+9:00
+
+-----------------------
+
+Product Manager: Thanks everyone for joining. Today we’ll discuss the initial design for the SuperBank web app.
+
+UX Designer: From a UX perspective, the main goal is simplicity. Users should be able to check their balance and make transfers in two or three clicks.
+
+Frontend Developer: That works for frontend. I suggest a clean dashboard with account summary cards and quick action buttons.
+
+Backend Developer: On the backend side, we’ll need secure APIs for authentication, transactions, and account data. Security has to be a top priority.
+
+Product Manager: Agreed. Let’s make sure we use multi-factor authentication and encrypted data storage.
+
+Frontend Developer: For the tech stack, I propose React for the frontend. It’s fast and easy to maintain.
+
+Backend Developer: That’s fine. I’ll design REST APIs that the frontend can easily consume.
+
+UX Designer: I’ll prepare wireframes for the dashboard, login page, and transfer flow by next week.
+
+Product Manager: Perfect. Let’s aim to review the wireframes and API structure in our next meeting.

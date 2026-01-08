@@ -1,6 +1,7 @@
-import sqlite3
+from pathlib import Path
 import tools    
 from mcp.server.fastmcp import FastMCP
+from mcp.server.fastmcp.resources import FileResource, TextResource, DirectoryResource
 
 # Initialize FastMCP server
 mcp = FastMCP("SuperBankMCP")
@@ -26,3 +27,14 @@ def create_partner(first_name, last_name, email):
     """
 
     return tools.create_partner(first_name, last_name, email)
+
+data_dir_path = Path("./transcriptions").resolve()
+if data_dir_path.is_dir():
+    data_listing_resource = DirectoryResource(
+        uri = "resource://data-files",
+        path = data_dir_path, 
+        name = "Data Directory Listing",
+        description = "Lists files available in the data directory.",
+        recursive = False 
+    )
+    mcp.add_resource(data_listing_resource) 
