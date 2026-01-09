@@ -2,6 +2,7 @@ from pathlib import Path
 import tools    
 from mcp.server.fastmcp import FastMCP
 from mcp.server.fastmcp.resources import FileResource, TextResource, DirectoryResource
+# from mcp.server.fastmcp.prompts.prompt import Message, PromptMessage, TextContent
 
 # Initialize FastMCP server
 mcp = FastMCP("SuperBankMCP")
@@ -38,3 +39,20 @@ if data_dir_path.is_dir():
         recursive = False 
     )
     mcp.add_resource(data_listing_resource) 
+
+@mcp.prompt()
+def support_investment(type_of_investment):
+    """
+    Support user with prompt of investment proposal
+    """
+    prompt = f"Create an {type_of_investment} investemnt proposal with risk warning."
+    match type_of_investment:
+        case "ore":
+            prompt += " Include current prices of most popular ores and display how they changed in last 6 months."
+        case "deposit":
+            prompt += " Search for best deposit offers from Polish banks. Include only ones for new funds."
+        case "real_estate":
+            prompt += " Search for current average prices of square meter in Wrocław. List average square meter price in different districts of Wrocław."
+        case _:
+            return "Incorrect type of investment"
+    return prompt
